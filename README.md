@@ -1,25 +1,28 @@
 # Learning Notes
 
-Personal notes on programming concepts and technologies I'm learning. Updated daily.
+My personal knowledge base for programming concepts and technologies. I commit notes here daily as part of my continuous learning routine.
 
-## What's Here
+## Contents
 
-**C# Programming**
-- Core language features
-- OOP concepts
-- Design patterns
+**C# & .NET**
 
-More topics added as I explore new areas.
+- Language fundamentals and advanced features
+- Object-oriented design principles
+- Common patterns and best practices
 
-## Why Public?
+Additional topics will be added as I expand into new areas.
 
-Learning in public helps me stay consistent and might help others studying similar topics. These are raw notes from my learning process - not polished tutorials.
+## Approach
 
-## Setup
+I'm documenting what I learn to reinforce concepts and build a reference I can revisit. These notes capture my understanding at different points in my learning journey - they're practical, not academic.
 
-Using Obsidian for note-taking, pushed to GitHub nightly.
+## Tools & Workflow
 
-## About
+- **Obsidian** for markdown-based note-taking with linking between concepts
+- **Git** for version control and tracking progress over time
+- Regular commits to maintain consistency
+
+## About Me
 
 Software engineer documenting my continuous learning journey. If you spot errors or have suggestions, feel free to open an issue.
 

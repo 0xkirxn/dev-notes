@@ -1073,3 +1073,405 @@ This is a non-static method
 This is a static method
 ```
 
+```csharp
+class Operations
+{
+    public void Display()
+    {
+        Console.WriteLine("This is non static method");
+    }
+
+    public void Add(int a, int b)
+    {
+        int sum = a + b;
+        Console.WriteLine(sum);
+    }
+
+    public int Sub(double a, double b)
+    {
+        return (int)(a - b);
+    }
+
+    static int var = 10;
+
+    public void NonStaticMethod()
+    {
+        Console.WriteLine($"Non Static Value of Var is {var}");
+    }
+
+    public static void StaticMethod()
+    {
+        Console.WriteLine($"Static Value of Var is {var}");
+    }
+}
+```
+```csharp
+class Program
+{
+    static void Main(string[] args)
+    {
+        Operations obj1 = new Operations();
+        obj1.Display();
+
+        obj1.Add(2, 3);
+
+        int c = obj1.Sub(3, 4);
+        Console.WriteLine(c);
+
+        obj1.NonStaticMethod(); //non-static
+        Operations.StaticMethod(); //static
+    }
+}
+```
+```
+This is non static method
+5
+-1
+Non Static Value of Var is 10
+Static Value of Var is 10
+```
+
+### Constructors
+
+1. Definition
+
+- A special method used to build/initialize objects.
+- load variables
+- It is called automatically when an object is created.
+- It must have the same name as the class and has no return type.
+
+2. Types of Constructors
+
+- Default Constructor: Parameter-less. If not defined, the system provides one by default.
+- Parameterized Constructor: Used to load specific values into variables during object creation.
+- Copy Constructor: Copies the instance (variables) of one constructor into another. It takes the class object as a parameter.
+- Constructor Overloading: Having multiple constructors in a class with different signatures (parameters).
+
+3. The this Keyword
+
+- Used to distinguish between class fields and parameters when they share the same name.
+
+```csharp
+
+using Constructors;
+using System;
+
+class Program
+{
+    int x, y;
+    public Program(int x, int y) { 
+        this.x = x;
+        this.y = y;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"Value of x is {x} and y is {y}");
+    }
+    static void Main(string[] args)
+    {
+        Program obj = new Program(3,2);
+        obj.Display();
+
+        Copycons obj2 = new Copycons("Kiran", 101);
+        Console.WriteLine("Original Constructor");
+        obj2.Display2();
+
+        Copycons obj3 = new Copycons(obj2,100000);
+        Console.WriteLine("Copy Constructor");
+        obj3.Display3();
+
+        Consoverloading obj4 = new Consoverloading();
+        Console.WriteLine();
+        obj4.display4();
+
+        Consoverloading obj5 = new Consoverloading(101,"kiran");
+        Console.WriteLine();
+        obj5.display4();
+
+        Consoverloading obj6 = new Consoverloading(101, "kiran", 100000);
+        Console.WriteLine();
+        obj6.display4();
+
+    }
+}
+```
+```csharp
+using System;
+
+namespace Constructors
+{
+    internal class Copycons
+    {
+        String name;
+        int id;
+        double salary;
+        public Copycons (String name, int id)
+        {
+            this.name = name;
+            this.id = id;
+        }
+
+        public Copycons(Copycons c, double salary)
+        {
+            name = c.name;
+            id = c.id;
+            this.salary = salary;
+        }
+
+        public void Display2()
+        {
+            Console.WriteLine($"Name: {name}\nId: {id}");
+        }
+        public void Display3()
+        {
+            Console.WriteLine($"Name: {name}\nId: {id}\nSalary: {salary}");
+        }
+
+    }
+}
+```
+```csharp
+using System;
+
+namespace Constructors
+{
+    internal class Consoverloading
+    {
+        String name;
+        int id;
+        double salary;
+
+        public Consoverloading()
+        {
+            id = 0;
+            name = "test";
+        }
+        public Consoverloading(int id, String name) { 
+            this.id = id;
+            this.name = name;
+        }
+
+        public Consoverloading(int id, String name, double salary)
+        {
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+        }
+
+        public void display4()
+        {
+            Console.WriteLine($"Id: {id}\nName: {name}\nSalary: {salary}");
+        }
+    }
+}
+
+```
+```
+Value of x is 3 and y is 2
+Original Constructor
+Name: Kiran
+Id: 101
+Copy Constructor
+Name: Kiran
+Id: 101
+Salary: 100000
+
+Id: 0
+Name: test
+Salary: 0
+
+Id: 101
+Name: kiran
+Salary: 0
+
+Id: 101
+Name: kiran
+Salary: 100000
+```
+
+## Object-Oriented Programming (OOP)
+
+OOP has **4 fundamental pillars**:
+
+1. **Inheritance**
+2. **Polymorphism**
+3. **Encapsulation**
+4. **Abstraction**
+
+### Inheritance
+
+#### 1. Concept
+
+- A mechanism to maintain relationships between classes (parent/child) allowing code reusability.
+- **Syntax:** `ChildClass : ParentClass`
+
+#### 2. Types of Inheritance Supported in C#
+
+- **Single Inheritance:** One parent → One child
+- **Multilevel Inheritance:** Parent → Child → GrandChild (e.g., A → B → C)
+- **Hierarchical Inheritance:** One parent → Multiple child classes
+- **Note:** Multiple and Hybrid inheritance are not directly supported due to ambiguity
+
+#### 3. The base Keyword
+
+- Used in a child class to access members (methods/constructors) of the parent class directly
+
+##### Single Inheritance
+
+```csharp
+using System;
+
+class Parent
+{
+    int a = 2;
+    
+    public void DisplayParent()
+    {
+        Console.WriteLine("Parent class");
+    }
+    
+    public void DisplayParent2()
+    {
+        Console.WriteLine($"Parent class {a}");
+    }
+}
+
+class Child : Parent
+{
+    public void DisplayChild()
+    {
+        base.DisplayParent2();
+        Console.WriteLine("Child class");
+    }
+}
+```
+
+**Main Program:**
+
+```csharp
+class Program
+{
+    static void Main(string[] args)
+    {
+        Child obj = new Child();
+        obj.DisplayChild();
+        obj.DisplayParent();
+    }
+}
+```
+
+**Output:**
+```
+Parent class 2
+Child class
+Parent class
+```
+
+##### Multilevel Inheritance
+
+```csharp
+using System;
+
+class GrandParent
+{
+    public void DisplayGrandParent()
+    {
+        Console.WriteLine("GrandParent class");
+    }
+}
+
+class Parent : GrandParent
+{
+    public void DisplayParent()
+    {
+        base.DisplayGrandParent();
+        Console.WriteLine("Parent class");
+    }
+}
+
+class Child : Parent
+{
+    public void DisplayChild()
+    {
+        base.DisplayParent();
+        Console.WriteLine("Child class");
+    }
+}
+```
+
+**Main Program:**
+
+```csharp
+class Program
+{
+    static void Main(string[] args)
+    {
+        Child obj = new Child();
+        obj.DisplayChild();
+    }
+}
+```
+
+**Output:**
+```
+GrandParent class
+Parent class
+Child class
+```
+
+##### Hierarchical Inheritance
+
+```csharp
+using System;
+
+class Parent
+{
+    public void DisplayParent()
+    {
+        Console.WriteLine("Parent class");
+    }
+}
+
+class Child1 : Parent
+{
+    public void DisplayChild()
+    {
+        base.DisplayParent();
+        Console.WriteLine("Child class 1");
+    }
+}
+
+class Child2 : Parent
+{
+    public void DisplayChild()
+    {
+        base.DisplayParent();
+        Console.WriteLine("Child class 2");
+    }
+}
+```
+
+**Main Program:**
+
+```csharp
+class Program
+{
+    static void Main(string[] args)
+    {
+        Child1 obj1 = new Child1();
+        obj1.DisplayChild();
+
+        Child2 obj2 = new Child2();
+        obj2.DisplayChild();
+    }
+}
+```
+
+**Output:**
+```
+Parent class
+Child class 1
+Parent class
+Child class 2
+```
