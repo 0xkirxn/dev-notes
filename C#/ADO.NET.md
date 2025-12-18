@@ -416,7 +416,7 @@ namespace DecBatch2025
             SqlCommand cmd = new SqlCommand(q, conn);
 
             cmd.ExecuteNonQuery();
-            Console.WriteLine("✅ Employee Deleted Successfully");
+            Console.WriteLine("Employee Deleted Successfully");
         }
 
         /// <summary>
