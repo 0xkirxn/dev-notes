@@ -66,13 +66,13 @@ C# compiles ENTIRE FILE(S) at once, NOT line by line
 
 **Comparison with Other Languages:**
 
-| Language | Compilation Style |
-|----------|------------------|
-| **C#** | Entire file(s) → IL → Native code |
-| **Java** | Entire file(s) → Bytecode → Native code |
-| **C/C++** | Entire file(s) → Native code directly |
-| **Python** | Line-by-line interpretation |
-| **JavaScript** | Line-by-line interpretation (with JIT) |
+| Language       | Compilation Style                       |
+| -------------- | --------------------------------------- |
+| **C#**         | Entire file(s) → IL → Native code       |
+| **Java**       | Entire file(s) → Bytecode → Native code |
+| **C/C++**      | Entire file(s) → Native code directly   |
+| **Python**     | Line-by-line interpretation             |
+| **JavaScript** | Line-by-line interpretation (with JIT)  |
 
 **Why This Matters:**
 ```csharp
@@ -221,12 +221,12 @@ MessageBox(IntPtr.Zero, "Hello", "Title", 0);
 
 ### C. Key Differences from Other Languages
 
-| Feature | C# | Java | Python |
-|---------|-----|------|--------|
-| **Compilation** | IL → Native | Bytecode → Native | Interpreted |
-| **Memory** | Automatic GC | Automatic GC | Automatic GC |
-| **Platform** | Cross-platform | Cross-platform | Cross-platform |
-| **Typing** | Static, Strong | Static, Strong | Dynamic, Strong |
+| Feature         | C#             | Java              | Python          |
+| --------------- | -------------- | ----------------- | --------------- |
+| **Compilation** | IL → Native    | Bytecode → Native | Interpreted     |
+| **Memory**      | Automatic GC   | Automatic GC      | Automatic GC    |
+| **Platform**    | Cross-platform | Cross-platform    | Cross-platform  |
+| **Typing**      | Static, Strong | Static, Strong    | Dynamic, Strong |
 
 ---
 ## 6. Introduction to C\#
@@ -2516,5 +2516,432 @@ Enter Age: 17
 Invalid Age Exception
 Executed custom exception code successfully
 ```
+
+---
+
+## 17. C# Collections: List vs ArrayList
+
+A comprehensive guide to understanding the differences between `List<T>` and `ArrayList` in C#.
+
+### Quick Comparison Table
+
+| Feature | List<T> | ArrayList |
+|---------|---------|-----------|
+| **Type Safety** | Provides type safety | Not type-safe (can be of any type) |
+| **Collection Type** | Generic collection | Non-generic collection |
+| **Performance** | Faster performance | Slower performance |
+| **Boxing/Unboxing** | Avoids boxing/unboxing overhead | Requires boxing and unboxing |
+| **Namespace** | Part of `System.Collections.Generic` | Part of `System.Collections` |
+
+### 1. List - The Modern Approach
+
+`List<T>` is a generic, strongly-typed collection introduced in .NET 2.0. The `<T>` represents the type of elements it will store.
+
+#### Basic Usage
+
+```csharp
+// Creating a List of integers
+List<int> numbers = new List<int>();
+numbers.Add(1);
+numbers.Add(2);
+// numbers.Add("text"); //  Compile error - only integers allowed
+
+// Creating a List with initialization
+List<string> names = new List<string> { "Alice", "Bob", "Charlie" };
+```
+
+#### Key Characteristics
+
+-  **Type-safe** - Compile-time type checking prevents errors
+-  **Better performance** - No boxing/unboxing for value types
+-  **IntelliSense support** - IDE provides autocomplete for the specific type
+-  **Modern standard** - Recommended for all new development
+
+### 2. ArrayList - The Legacy Collection
+
+`ArrayList` is a non-generic collection from .NET 1.0 that stores elements as `object` type.
+
+#### Basic Usage
+
+```csharp
+ArrayList list = new ArrayList();
+list.Add(1);           // Stored as object
+list.Add("text");      // Can mix types
+list.Add(true);        // Any type allowed
+
+int num = (int)list[0]; //  Requires explicit casting
+```
+
+#### Key Characteristics
+
+-  **Not type-safe** - Runtime errors possible
+-  **Requires casting** - Must cast when retrieving values
+-  **Performance overhead** - Boxing/unboxing for value types
+-  **Legacy code only** - Considered obsolete in modern development
+
+### 3. Generic vs Non-Generic Collections
+
+#### Non-Generic Collections
+
+Non-generic collections store elements as `object` type, allowing any data type but losing type safety.
+
+```csharp
+ArrayList list = new ArrayList();
+list.Add(10);           // int stored as object (boxing)
+list.Add("hello");      // string stored as object
+list.Add(true);         // bool stored as object
+
+int number = (int)list[0];      // Must cast back (unboxing)
+string text = (string)list[1];  // Explicit casting required
+```
+
+**Problems:**
+- No compile-time type checking
+- Requires explicit casting when retrieving values
+- Boxing/unboxing overhead for value types (slower)
+- Runtime errors if you cast incorrectly
+
+**Common Examples:** `ArrayList`, `Hashtable`, `Stack`, `Queue`
+
+#### Generic Collections
+
+Generic collections use type parameters (like `<T>`) to specify the data type at creation time.
+
+```csharp
+List<int> numbers = new List<int>();
+numbers.Add(10);        // Only integers allowed
+numbers.Add(20);
+// numbers.Add("hello"); //  Compile error caught immediately!
+
+int first = numbers[0]; //  No casting needed
+```
+
+**Benefits:**
+-  Type-safe (errors caught at compile time)
+-  No casting required
+-  Better performance (no boxing/unboxing)
+-  IntelliSense shows the correct type
+
+**Common Examples:** `List<T>`, `Dictionary<TKey, TValue>`, `Queue<T>`, `Stack<T>`, `HashSet<T>`
+
+### 4. Practical Example: Working with Custom Objects
+
+#### Defining a Custom Class
+
+```csharp
+class Emp
+{
+    public int eid { get; set; }
+    public string ename { get; set; }
+    public double esal { get; set; }
+}
+```
+
+#### Creating and Using a List of Custom Objects
+
+```csharp
+class EmployeeManager
+{
+    public static void Main(string[] args)
+    {
+        // Creating a list of employees
+        var employees = new List<Emp>()
+        {
+            new Emp { eid = 1, ename = "John", esal = 100000 },
+            new Emp { eid = 2, ename = "Ron", esal = 300000 }
+        };
+        
+        // Iterating through the list
+        foreach (var emp in employees)
+        {
+            Console.WriteLine($"ID: {emp.eid} Name: {emp.ename} Salary: {emp.esal}");
+        }
+    }
+}
+```
+
+**Output:**
+```
+ID: 1 Name: John Salary: 100000
+ID: 2 Name: Ron Salary: 300000
+```
+
+### 5. Best Practices
+
+####  DO Use List
+
+Always use `List<T>` in modern C# development for:
+- Better performance
+- Type safety
+- Cleaner, more maintainable code
+- Full IntelliSense support
+
+####  DON'T Use ArrayList
+
+`ArrayList` should only be encountered in:
+- Legacy codebases
+- Backward compatibility scenarios
+- Code written before .NET 2.0
+
+### 6. Summary Comparison
+
+```csharp
+//  Non-generic - can store anything, requires casting
+ArrayList oldList = new ArrayList();
+oldList.Add(100);
+int value = (int)oldList[0]; // Cast required - slower and error-prone
+
+//  Generic - type-safe, no casting, modern approach
+List<int> newList = new List<int>();
+newList.Add(100);
+int value2 = newList[0]; // No cast needed - faster and safer
+```
+
+---
+
+## 18. Extension Methods
+
+**Definition:** A special kind of method that allows us to add new functionality to existing types (classes or interfaces) without modifying their original source code.
+
+### Key Characteristics
+
+-  Defined in a **static class**
+-  Must be a **static method**
+-  First parameter uses the **`this`** keyword followed by the type to extend
+-  Can extend **any type** (built-in or custom classes, interfaces, etc.)
+-  Provides a clean way to add functionality without inheritance
+
+### Basic Syntax
+
+```csharp
+static class ExtensionClassName
+{
+    public static ReturnType MethodName(this TypeName parameter)
+    {
+        // method body
+    }
+}
+```
+
+### Example 1: Simple Extension Method
+
+#### Original Class
+
+```csharp
+class Auth
+{
+    public void SignUp()
+    {
+        // Sign-up logic
+    }
+}
+```
+
+#### Extension Method (in a static class)
+
+```csharp
+static class AuthExtensions
+{
+    public static void SignIn(this Auth auth)
+    {
+        Console.WriteLine("User signed in successfully!");
+    }
+}
+```
+
+#### Usage in Main Program
+
+```csharp
+class Program
+{
+    static void Main(string[] args)
+    {
+        Auth obj = new Auth();
+        obj.SignUp();   // Original method
+        obj.SignIn();   // Extension method
+    }
+}
+```
+
+**Output:**
+```
+User signed in successfully!
+```
+
+### Example 2: Extension Method with Parameters
+
+```csharp
+static class StringExtensions
+{
+    // Add method to reverse a string
+    public static string Reverse(this string str)
+    {
+        char[] chars = str.ToCharArray();
+        System.Array.Reverse(chars);
+        return new string(chars);
+    }
+    
+    // Add method to count vowels
+    public static int CountVowels(this string str)
+    {
+        int count = 0;
+        foreach (char c in str.ToLower())
+        {
+            if ("aeiou".Contains(c))
+                count++;
+        }
+        return count;
+    }
+}
+```
+
+#### Usage
+
+```csharp
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string text = "Hello World";
+        
+        Console.WriteLine($"Original: {text}");
+        Console.WriteLine($"Reversed: {text.Reverse()}");
+        Console.WriteLine($"Vowel Count: {text.CountVowels()}");
+    }
+}
+```
+
+**Output:**
+```
+Original: Hello World
+Reversed: dlroW olleH
+Vowel Count: 3
+```
+
+### Example 3: Extension Method on Built-in Types
+
+```csharp
+static class IntExtensions
+{
+    // Check if integer is even
+    public static bool IsEven(this int num)
+    {
+        return num % 2 == 0;
+    }
+    
+    // Check if integer is prime
+    public static bool IsPrime(this int num)
+    {
+        if (num < 2) return false;
+        for (int i = 2; i < num; i++)
+        {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+}
+```
+
+#### Usage
+
+```csharp
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int number = 17;
+        
+        Console.WriteLine($"{number} is even: {number.IsEven()}");
+        Console.WriteLine($"{number} is prime: {number.IsPrime()}");
+        
+        int number2 = 24;
+        Console.WriteLine($"{number2} is even: {number2.IsEven()}");
+        Console.WriteLine($"{number2} is prime: {number2.IsPrime()}");
+    }
+}
+```
+
+**Output:**
+```
+17 is even: False
+17 is prime: True
+24 is even: True
+24 is prime: False
+```
+
+### Example 4: Extension Method on Collections
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+static class ListExtensions
+{
+    // Get maximum value from a list
+    public static int GetMax(this List<int> numbers)
+    {
+        int max = numbers[0];
+        foreach (int num in numbers)
+        {
+            if (num > max) max = num;
+        }
+        return max;
+    }
+    
+    // Get minimum value from a list
+    public static int GetMin(this List<int> numbers)
+    {
+        int min = numbers[0];
+        foreach (int num in numbers)
+        {
+            if (num < min) min = num;
+        }
+        return min;
+    }
+}
+```
+
+#### Usage
+
+```csharp
+class Program
+{
+    static void Main()
+    {
+        List<int> numbers = new List<int> { 5, 2, 8, 1, 9, 3 };
+        
+        Console.WriteLine($"Numbers: {string.Join(", ", numbers)}");
+        Console.WriteLine($"Maximum: {numbers.GetMax()}");
+        Console.WriteLine($"Minimum: {numbers.GetMin()}");
+    }
+}
+```
+
+**Output:**
+```
+Numbers: 5, 2, 8, 1, 9, 3
+Maximum: 9
+Minimum: 1
+```
+
+### Advantages of Extension Methods
+
+ - **Non-invasive** - Extend types without modifying their source code
+ - **Organized** - Group related functionality in extension classes
+ - **IntelliSense** - IDEs recognize extension methods and show them in autocomplete
+ - **Cleaner Syntax** - Call methods as if they were part of the original type
+ - **Reusable** - Can be used throughout the application
+ - **Maintainable** - Better organization of code
+
+### Important Rules
+
+ - **Cannot override existing methods** - Extension methods have lower priority than instance methods
+ - **Must be in static class** - Extension methods must be defined in a static class
+ - **Static methods only** - Extension methods themselves must be static
+ - **First parameter must use `this`** - This parameter identifies the type being extended
 
 ---
