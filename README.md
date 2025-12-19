@@ -6,9 +6,9 @@ My personal knowledge base for programming concepts and technologies. I commit n
 
 **C# & .NET**
 
-- [C Sharp.md](dotnet-development/C%20Sharp.md) - Complete C# guide 
-- [ADO.NET.md](dotnet-development/ADO.NET.md) - Database integration with ADO.NET 
-- [ASP.NET.md](dotnet-development/ASP.NET.md) - Web Forms development
+- [C Sharp.md](dotnet/C%20Sharp.md) - Complete C# guide 
+- [ADO.NET.md](dotnet/ADO.NET.md) - Database integration with ADO.NET 
+- [ASP.NET.md](dotnet/ASP.NET.md) - Web Forms development
 
 Additional topics will be added as I expand into new areas.
 
