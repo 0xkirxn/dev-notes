@@ -6,9 +6,9 @@ My personal knowledge base for programming concepts and technologies. I commit n
 
 **C# & .NET**
 
-- Language fundamentals and advanced features
-- Object-oriented design principles
-- Common patterns and best practices
+- [C Sharp.md](dotnet-development/C%20Sharp.md) - Complete C# guide 
+- [ADO.NET.md](dotnet-development/ADO.NET.md) - Database integration with ADO.NET 
+- [ASP.NET.md](dotnet-development/ASP.NET.md) - Web Forms development
 
 Additional topics will be added as I expand into new areas.
 
@@ -28,4 +28,4 @@ Software engineer documenting my continuous learning journey. If you spot errors
 
 ---
 
-*Last updated: December 2025*
+*Last updated: 19 December 2025*
