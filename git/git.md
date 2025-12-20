@@ -385,7 +385,7 @@ git stash clear                 # Remove ALL stashes
 ```
 
 > [!NOTE]
-> Stash is a **Stack** (LIFO)—last stashed = first popped.
+> Stash is a **Stack** (LIFO) ast stashed = first popped.
 
 ---
 
