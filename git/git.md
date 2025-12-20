@@ -208,7 +208,7 @@ git rebase --abort              # Cancel rebase
 ```
 
 > [!CAUTION]
-> **Golden Rule:** Never rebase a public branch (like `main`) that others are working on—it destroys their history!
+> **Golden Rule:** Never rebase a public branch (like `main`) that others are working on it destroys their history!
 
 ---
 
@@ -240,7 +240,7 @@ git checkout -- <file>          # Classic
 
 ### 9. Remotes & GitHub
 
-> A remote is just **another copy** of the repository—it can be GitHub, GitLab, or even another folder!
+> A remote is just **another copy** of the repository it can be GitHub, GitLab, or even another folder!
 
 ```bash
 git remote -v                           # View remotes
@@ -265,7 +265,7 @@ git fetch origin                        # Download without merging
 
 ### 1. Forking Workflow
 
-> **Fork** is a GitHub feature (not Git!)—it copies a repo to your account.
+> **Fork** is a GitHub feature (not Git!) it copies a repo to your account.
 
 ```mermaid
 flowchart LR
@@ -289,7 +289,7 @@ git merge upstream/main
 
 ### 2. Reflog (Your Safety Net)
 
-> **Reflog** tracks every movement of HEAD—it's your safety net for recovering "lost" commits!
+> **Reflog** tracks every movement of HEAD it's your safety net for recovering "lost" commits!
 
 ```bash
 git reflog                      # View HEAD history
@@ -345,7 +345,7 @@ git rebase --continue           # After resolving
 
 ### 5. RERERE (Reuse Recorded Resolution)
 
-> RERERE remembers how you resolved conflicts—Git auto-resolves the same conflict next time!
+> RERERE remembers how you resolved conflicts Git auto-resolves the same conflict next time!
 
 ```bash
 git config --global rerere.enabled true
@@ -391,7 +391,7 @@ git stash clear                 # Remove ALL stashes
 
 ### 8. Reverting
 
-> Creates a **new commit** that undoes a previous commit—safe for public branches!
+> Creates a **new commit** that undoes a previous commit safe for public branches!
 
 ```bash
 git revert <commit-hash>        # Undo specific commit
@@ -451,7 +451,7 @@ git worktree remove ../feature-branch
 
 ### 12. Tags
 
-> **Immutable pointers** to specific commits—used for releases.
+> **Immutable pointers** to specific commits used for releases.
 
 ```bash
 git tag v1.0.0                          # Lightweight tag
