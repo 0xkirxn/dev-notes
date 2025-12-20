@@ -10,6 +10,10 @@ My personal knowledge base for programming concepts and technologies. I commit n
 - [ADO.NET.md](dotnet/ADO.NET.md) - Database integration with ADO.NET 
 - [ASP.NET.md](dotnet/ASP.NET.md) - Web Forms development
 
+**Version Control**
+
+- [Git.md](git/Git.md) - Git internals, workflows & team collaboration
+
 Additional topics will be added as I expand into new areas.
 
 ## Approach
@@ -28,4 +32,4 @@ Software engineer documenting my continuous learning journey. If you spot errors
 
 ---
 
-*Last updated: 19 December 2025*
+*Last updated: 20 December 2025*

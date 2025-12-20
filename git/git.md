@@ -1,4 +1,4 @@
-# Git - Developer Notes
+# Git
 
 > Git is a **distributed version control system** created by Linus Torvalds in 2005 in just five days following a license dispute with BitKeeper.
 
