@@ -33,4 +33,4 @@ Software engineer documenting my continuous learning journey. If you spot errors
 
 ---
 
-*Last updated: 20 December 2025*
+*Last updated: January 2026*
