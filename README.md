@@ -13,6 +13,7 @@ My personal knowledge base for programming concepts and technologies. I commit n
 **Version Control**
 
 - [Git.md](git/Git.md) - Git internals, workflows & team collaboration
+- [GitHub.md](git/GitHub.md) - GitHub features & workflows
 
 Additional topics will be added as I expand into new areas.
 
